@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
-import { insertStudent } from "../data/students/insertStudent";
-import { signUpStudent, signUpMission } from "../types";
+import { signUpMission } from "../types";
 import { validateBody } from "../functions/validations";
 import { insertMission } from "../data/insertMission";
 
