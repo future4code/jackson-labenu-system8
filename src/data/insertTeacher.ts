@@ -1,5 +1,5 @@
 import { connection } from "../index";
-import { signUpTeacher, EXPERTISES } from "../types";
+import { signUpTeacher } from "../types";
 import { convertDateFormatToDatabase } from "../functions/dateFunctions";
 
 // Insere o professor na tabela:
@@ -12,15 +12,6 @@ export const insertTeacher = async (teacher: signUpTeacher): Promise<void> => {
       birthDate: convertDateFormatToDatabase(birthDate)
     })
     .into("Lab_Teacher");
-};
-
-// Insere as especialidades do professor na tabela:
-export const insertExpertise = async (
-  expertises: EXPERTISES[]
-): Promise<void> => {
-  for (let i = 0; i < expertises.length; i++) {
-    await connection.insert({ name: expertises[i] }).into("Lab_Expertise");
-  }
 };
 
 // Insere o professor e suas especialidades na tabela relacional:

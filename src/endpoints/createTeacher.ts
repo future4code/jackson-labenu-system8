@@ -7,7 +7,6 @@ import {
 import { signUpTeacher } from "../types";
 import {
   insertTeacher,
-  insertExpertise,
   insertTeacherExpertiseRelation
 } from "../data/insertTeacher";
 
@@ -18,20 +17,18 @@ export const createTeacher = async (
   try {
     const { name, email, birthDate, expertises } = req.body;
     await validateBody({ name, email, birthDate, expertises });
-
     validateEmail(email);
     validateExpertises(expertises);
 
-    const input: signUpTeacher = {
+    const newTeacher: signUpTeacher = {
       name,
       email,
       birthDate,
       expertises
     };
 
-    await insertTeacher(input);
-    await insertExpertise(expertises);
-    await insertTeacherExpertiseRelation(input);
+    await insertTeacher(newTeacher);
+    await insertTeacherExpertiseRelation(newTeacher);
 
     res.status(200).send("Novo professor criado");
   } catch (error) {

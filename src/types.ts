@@ -35,6 +35,16 @@ export type Teacher = {
   expertises: EXPERTISES[];
 };
 
+export type Mission = {
+  id: number;
+  name: string;
+  startDate: string;
+  finishDate: string;
+  teachers: Teacher[];
+  students: Student[];
+  currentModule: number | undefined;
+};
+
 export enum EXPERTISES {
   REACT = "React",
   REDUX = "Redux",
@@ -54,13 +64,3 @@ export const validExpertises = [
   EXPERTISES.POAO,
   EXPERTISES.BACKEND
 ];
-
-export type Mission = {
-  id: number;
-  name: string;
-  startDate: string;
-  finishDate: string;
-  teachers: Teacher[];
-  students: Student[];
-  currentModule: number | undefined;
-};

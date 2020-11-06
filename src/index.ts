@@ -7,6 +7,11 @@ import dotenv from "dotenv";
 import { createStudent } from "./endpoints/createStudent";
 import { createTeacher } from "./endpoints/createTeacher";
 import { createMission } from "./endpoints/createMission";
+import { addStudentToMission } from "./endpoints/addStudentToMission";
+import { addTeacherToMission } from "./endpoints/addTeacherToMission";
+import { getStudentAge } from "./endpoints/getStudentAge";
+import { getStudentsOfMission } from "./endpoints/getStudentsOfMission";
+import { getTeachersOfMission } from "./endpoints/getTeachersOfMission";
 
 dotenv.config();
 export const connection = knex({
@@ -24,9 +29,16 @@ const app: Express = express();
 app.use(express.json());
 app.use(cors());
 
+app.get("/student/age", getStudentAge);
 app.post("/student/new", createStudent);
+
 app.post("/teacher/new", createTeacher);
+
+app.get("/mission/:missionId/students", getStudentsOfMission);
+app.get("/mission/:missionId/teachers", getTeachersOfMission);
 app.post("/mission/new", createMission);
+app.put("/mission/student", addStudentToMission);
+app.put("/mission/teacher", addTeacherToMission);
 
 const server = app.listen(process.env.PORT || 3003, () => {
   if (server) {

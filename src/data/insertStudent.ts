@@ -1,6 +1,6 @@
-import { connection } from "../../index";
-import { signUpStudent } from "../../types";
-import { convertDateFormatToDatabase } from "../../functions/dateFunctions";
+import { connection } from "../index";
+import { signUpStudent } from "../types";
+import { convertDateFormatToDatabase } from "../functions/dateFunctions";
 
 // Insere o estudante na tabela:
 export const insertStudent = async (student: signUpStudent): Promise<void> => {

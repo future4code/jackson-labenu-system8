@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { insertStudent } from "../data/students/insertStudent";
+import { insertStudent } from "../data/insertStudent";
 import { signUpStudent } from "../types";
 import { validateBody, validateEmail } from "../functions/validations";
 
@@ -12,14 +12,14 @@ export const createStudent = async (
     await validateBody({ name, email, birthDate, hobbies });
     await validateEmail(email);
 
-    const input: signUpStudent = {
+    const newStudent: signUpStudent = {
       name,
       email,
       birthDate,
       hobbies
     };
 
-    await insertStudent(input);
+    await insertStudent(newStudent);
 
     res.status(200).send("Novo estudante criado");
   } catch (error) {
