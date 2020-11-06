@@ -19,7 +19,6 @@ export const createMission = async (
     };
 
     await insertMission(input);
-
     res.status(200).send("Nova turma criada");
   } catch (error) {
     res.send(error.message);
